@@ -2,13 +2,11 @@
 require_once __DIR__ . '/includes/functions.php';
 
 
-// Если уже вошли — редиректим
 if (isset($_SESSION['user_id'])) {
     header("Location: /");
     exit;
 }
 
-// Если отправлена форма — обрабатываем
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     global $pdo;
     
@@ -25,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_email'] = $user['email'];
         $_SESSION['user_role'] = $user['role'];
 
-        // Успешный логин -> редирект
         header("Location: /");
         exit;
     } else {
