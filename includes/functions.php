@@ -3,11 +3,13 @@ require_once __DIR__ . '/../config/database.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-function isAdmin() {
+function isAdmin()
+{
     return isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin';
 }
 
-function getProducts($search = '', $category = '', $minPrice = '', $maxPrice = '', $sort = '') {
+function getProducts($search = '', $category = '', $minPrice = '', $maxPrice = '', $sort = '')
+{
     global $pdo;
 
     $sql = "SELECT * FROM products WHERE 1=1";
@@ -48,7 +50,7 @@ function getProducts($search = '', $category = '', $minPrice = '', $maxPrice = '
             $sql .= " ORDER BY name DESC";
             break;
         default:
-            $sql .= " ORDER BY id DESC"; 
+            $sql .= " ORDER BY id DESC";
     }
 
     $stmt = $pdo->prepare($sql);
@@ -59,27 +61,30 @@ function getProducts($search = '', $category = '', $minPrice = '', $maxPrice = '
 
 
 
-function getProductById($id) {
+function getProductById($id)
+{
     global $pdo;
-    
+
     $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
     $stmt->execute([$id]);
-    
+
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-function getCategories() {
+function getCategories()
+{
     global $pdo;
-    
+
     $stmt = $pdo->query("SELECT * FROM categories");
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function addToCart($productId, $quantity = 1) {
+function addToCart($productId, $quantity = 1)
+{
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
     }
-    
+
     if (isset($_SESSION['cart'][$productId])) {
         $_SESSION['cart'][$productId] += $quantity;
     } else {
@@ -88,11 +93,12 @@ function addToCart($productId, $quantity = 1) {
 }
 
 
-function getCartItems() {
+function getCartItems()
+{
     if (empty($_SESSION['cart'])) {
         return [];
     }
-    
+
     $cartItems = [];
     foreach ($_SESSION['cart'] as $productId => $quantity) {
         $product = getProductById($productId);
@@ -101,16 +107,76 @@ function getCartItems() {
             $cartItems[] = $product;
         }
     }
-    
+
     return $cartItems;
 }
 
-function getOrderHistory($userId) {
+function getOrderHistory($userId)
+{
     global $pdo;
-    
+
     $stmt = $pdo->prepare("SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC");
     $stmt->execute([$userId]);
-    
+
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}function getSliderImages()
+{
+    return [
+        'assets/images/slider1.png',
+        'assets/images/slider2.png',
+        'assets/images/slider3.png',
+    ];
+}
+//скрипт слайдера
+function renderSliderScript() {
+    echo <<<HTML
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const slider = document.getElementById('slider');
+        const slides = slider.querySelectorAll('img');
+        const totalSlides = slides.length;
+        let currentIndex = 0;
+
+        const updateSlider = () => {
+            slider.style.transform = 'translateX(' + (-100 * currentIndex) + '%)';
+            updateDots();
+        };
+
+        document.getElementById('next').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSlider();
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        });
+
+        // Автоматическая прокрутка
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSlider();
+        }, 5000);
+
+        // Навигационные точки
+        const dots = document.querySelectorAll('.slider-dot');
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('bg-indigo-600', index === currentIndex);
+                dot.classList.toggle('bg-gray-300', index !== currentIndex);
+            });
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                updateSlider();
+            });
+        });
+
+        updateSlider();
+    });
+    </script>
+HTML;
 }
 ?>
