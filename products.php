@@ -103,23 +103,23 @@ $categories = getCategories();
         <?php else: ?>
             <?php foreach ($products as $product): ?>
                 <div class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition-shadow">
-                    <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>"
-                        class="w-full h-60 object-cover">
+                    <a href="/productCart.php?id=<?= $product['id'] ?>">
+                        <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>"
+                            class="w-full h-60 object-cover">
+                    </a>
                     <div class="p-4">
-                        <h3 class="font-semibold text-lg mb-2"><?= htmlspecialchars($product['name']) ?></h3>
+                        <a href="/productCart.php?id=<?= $product['id'] ?>">
+                            <h3 class="font-semibold text-lg mb-2 hover:text-indigo-600">
+                                <?= htmlspecialchars($product['name']) ?>
+                            </h3>
+                        </a>
                         <p class="text-gray-600 mb-4"><?= htmlspecialchars(substr($product['description'], 0, 100)) ?>...</p>
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-bold text-indigo-600"><?= number_format($product['price'], 2) ?> ₽</span>
+                        <div class="font-bold text-indigo-600 mb-2">
+                            <?= number_format($product['price'], 2) ?> ₽
                         </div>
-                        <form method="post" class="flex items-center space-x-2">
-                            <input type="hidden" name="add_to_cart" value="<?= $product['id'] ?>">
-                            <input type="number" name="quantity" value="1" min="1"
-                                class="w-16 px-2 py-1 border rounded text-center">
-                            <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">В
-                                корзину</button>
-                        </form>
                     </div>
                 </div>
+
             <?php endforeach; ?>
         <?php endif; ?>
     </div>

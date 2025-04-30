@@ -59,18 +59,6 @@ function getProducts($search = '', $category = '', $minPrice = '', $maxPrice = '
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
-
-function getProductById($id)
-{
-    global $pdo;
-
-    $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
-    $stmt->execute([$id]);
-
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
 function getCategories()
 {
     global $pdo;
@@ -179,4 +167,12 @@ function renderSliderScript() {
     </script>
 HTML;
 }
-?>
+function getProductById($id)
+{
+    global $pdo;
+
+    $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
+    $stmt->execute([$id]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
