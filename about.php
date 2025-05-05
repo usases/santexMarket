@@ -36,7 +36,7 @@ require_once __DIR__ . '/includes/header.php';
                 <div>
                     <h2 class="text-2xl font-bold mb-4 text-indigo-600">Контактная информация</h2>
                     <ul class="space-y-2">
-                        <li><strong>Адрес:</strong> г. Москва</li>
+                        <li><strong>Адрес:</strong> г. Воронеж, ул. Театральная, д. 1</li>
                         <li><strong>Телефон:</strong> <a href="tel:+7 (999) 999-99-99" class="text-indigo-600 hover:underline">+7 (999) 999-99-99</a></li>
                         <li><strong>Email:</strong> <a href="mailto:info@santexmarket.ru" class="text-indigo-600 hover:underline">support@example.com</a></li>
                         <li><strong>Время работы:</strong> Пн–Вс, 9:00–21:00</li>

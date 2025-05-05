@@ -26,7 +26,7 @@
                     <div>
                         <h4 class="text-lg font-semibold mb-4">Контакты</h4>
                         <address>
-                            <p>г. Москва</p>
+                            <p>г. Воронеж, ул. Театральная, д. 1</p>
                             <p>Email: support@example.com</p>
                             <p>Телефон: +7 (999) 999-99-99</p>
                         </address>
