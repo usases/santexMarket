@@ -113,7 +113,7 @@ $categories = getCategories();
                                 <?= htmlspecialchars($product['name']) ?>
                             </h3>
                         </a>
-                        <p class="text-gray-600 mb-4"><?= htmlspecialchars(substr($product['description'], 0, 100)) ?>...</p>
+                        <p class="text-gray-600 mb-4">На складе: <?= (int)$product['stock'] ?> шт.</p>
                         <div class="font-bold text-indigo-600 mb-2">
                             <?= number_format($product['price'], 2) ?> ₽
                         </div>

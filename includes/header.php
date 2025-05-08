@@ -24,14 +24,16 @@ $categories = getCategories();
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <!-- Логотип -->
             <a href="/" class="flex items-center">
-                <img src="/assets/images/logo2.jpg" alt="Логотип" class="h-10 w-10 object-cover">
+                <img src="/assets/images/logo.jpg" alt="Логотип" class="h-10 w-10 object-cover">
             </a>
 
             <!-- Десктоп версия -->
             <div class="hidden md:flex items-center justify-between w-full">
                 <div class="flex items-center space-x-8">
                     <!-- Название -->
-                    <span class="text-2xl font-bold text-indigo-600">SantexMarket</span>
+                    <a href="/" class="text-2xl font-bold text-indigo-600 hover:underline">
+                        SantexMarket
+                    </a>
                     <!-- Каталог -->
                     <div class="relative group">
                         <button

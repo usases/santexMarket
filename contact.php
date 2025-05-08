@@ -64,7 +64,6 @@ require_once __DIR__ . '/includes/header.php';
                         <h2 class="text-2xl font-bold text-indigo-600 mb-2">Мы в соцсетях</h2>
                         <div class="flex space-x-4 mt-2">
                             <a href="#" class="text-indigo-600 hover:text-indigo-800">Telegram</a>
-                            <a href="#" class="text-indigo-600 hover:text-indigo-800">Instagram</a>
                         </div>
                     </div>
 
