@@ -32,7 +32,6 @@ $categories = getCategories();
                 <div class="flex items-center space-x-8">
                     <!-- Название -->
                     <span class="text-2xl font-bold text-indigo-600">SantexMarket</span>
-
                     <!-- Каталог -->
                     <div class="relative group">
                         <button
@@ -132,7 +131,6 @@ $categories = getCategories();
                     <?php endif; ?>
                 </div>
             </div>
-
             <!-- Мобильная версия -->
             <div class="md:hidden flex items-center space-x-4">
                 <a href="/cart.php" class="relative">
